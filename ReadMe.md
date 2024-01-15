@@ -3,6 +3,8 @@
 Date: 1/13/2024
 Github link: [Repository](https://github.com/HichamBenkada/ALAB3_RESTfulAPI.git)
 
+- API Authentification Keys: [perscholas](https://perscholas.org/about-per-scholas/)
+
 ## Introduction:
 
 This is a Node.js Express project that expands a REST API Application, [CodeSandbox](https://codesandbox.io/p/sandbox/express-building-a-restful-api-9-hg34yn), that we started during the course lesson.
@@ -38,10 +40,11 @@ My objective is to effectively add additional routes and any necessary code effe
 The routes added:
 
 <!-- Retrieves all posts by a user with the specified id. -->
-- GET /api/users/:id/posts
- 
-- GET /api/posts?userId=<VALUE>
-Retrieves all posts by a user with the specified postId.
+- GET /api/users/:id/posts : DONE!
+
+ <!-- Retrieves all posts by a user with the specified postId. rapping Route path in / instead ""RegEX...-->
+- GET /api/posts?userId=--<VALUE> : DONE!
+
 It is common for APIs to have multiple endpoints that accomplish the same task. This route uses a "userId" query parameter to filter posts, while the one above uses a route parameter.
 GET /comments
 Note that we do not have any comments data yet; that is okay! Make sure that you create a place to store comments, but you do not need to populate that data.

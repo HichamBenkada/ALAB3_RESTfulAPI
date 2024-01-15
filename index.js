@@ -91,9 +91,15 @@ app.get("/api", (req, res) => {
         rel: "posts",
         type: "POST",
       },
+      {
+        href: "api/posts?userid=:userId",
+        rel: ":userId",
+        type: "GET",
+      },
     ],
-  });
+  })
 });
+
 
 // 404 Middleware
 app.use((req, res, next) => {

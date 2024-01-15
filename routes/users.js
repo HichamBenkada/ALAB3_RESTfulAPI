@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const users = require("../data/users");
-const posts = require("../data/posts")
+const posts = require("../data/posts");
 const error = require("../utilities/error");
 
 router
@@ -82,20 +82,19 @@ router
     else next();
   });
 
+//-----------
 //Retrieves all posts by a user with the specified id.
-router
-.route("/:id/posts")
-.get((req,res,next)=>{
+router.route("/:id/posts").get((req, res, next) => {
   const user = users.find((u) => u.id == req.params.id);
 
   const userPosts = [];
-  posts.forEach((post)=>{
-    if(post.userId === Number(req.params.id)) userPosts.push(post);
+  posts.forEach((post) => {
+    if (post.userId === Number(req.params.id)) userPosts.push(post);
   });
 
   if (user && userPosts) res.json(userPosts);
+  // http://localhost:3000/api/users/2/posts?api-key=perscholas //checked!
   else next();
 });
-
 
 module.exports = router;
