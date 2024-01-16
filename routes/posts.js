@@ -35,7 +35,6 @@ router
       res.json({ userPosts, links });
     } else res.json({ posts, links });
   })
-
   .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {
       const post = {
