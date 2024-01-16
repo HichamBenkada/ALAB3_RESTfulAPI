@@ -17,24 +17,25 @@ router
       },
     ];
 
-    res.json({ posts, links });
-  })
-  //--------------
-  // Retrieves posts by userId.
-  .get((req, res, next) => {
-    const userId = parseInt(req.query.userId);
-    console.log(userId);
-    const user = users.find((u) => u.id === userId);
-    if (!userId || !user) next();
-    else {
+    //--------------
+    //if the url include a userID query: Retrieves posts by userId.
+    //---------------^
+    if (req.query.userId) {
+      links.push({
+        href: "posts?userId=:id",
+        rel: ":id",
+        type: "GET",
+      });
       const userPosts = [];
       posts.forEach((p) => {
-        if (p.userId === Number(req.params.id)) userPosts.push(p);
+        if (p.userId === parseInt(req.query.userId)) {
+          userPosts.push(p);
+        }
       });
-      if ((user, userPosts)) res.json(userPosts);
-    }
+      res.json({ userPosts, links });
+    } else res.json({ posts, links });
   })
-  //---------------^
+
   .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {
       const post = {

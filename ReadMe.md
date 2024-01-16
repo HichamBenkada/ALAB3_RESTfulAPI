@@ -42,7 +42,7 @@ The routes added:
 <!-- Retrieves all posts by a user with the specified id. -->
 - GET /api/users/:id/posts : DONE!
 
- <!-- Retrieves all posts by a user with the specified postId. rapping Route path in / instead ""RegEX...-->
+ <!-- Retrieves all posts by a user with the specified postId -->
 - GET /api/posts?userId=--<VALUE> : DONE!
 
 It is common for APIs to have multiple endpoints that accomplish the same task. This route uses a "userId" query parameter to filter posts, while the one above uses a route parameter.

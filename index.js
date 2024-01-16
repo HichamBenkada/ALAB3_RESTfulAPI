@@ -1,13 +1,12 @@
 const express = require("express");
+const app = express();
+const port = 3000;
+
 const bodyParser = require("body-parser");
 
 const users = require("./routes/users");
 const posts = require("./routes/posts");
-
 const error = require("./utilities/error");
-
-const app = express();
-const port = 3000;
 
 // Parsing Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +15,6 @@ app.use(bodyParser.json({ extended: true }));
 // Logging Middlewaare
 app.use((req, res, next) => {
   const time = new Date();
-
   console.log(
     `-----
 ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
