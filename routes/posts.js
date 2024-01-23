@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const posts = require("../data/posts");
-const users = require("../routes/users");
+const comments = require("../data/comments");
 const error = require("../utilities/error");
 
 router
@@ -65,8 +65,12 @@ router
         rel: "",
         type: "DELETE",
       },
+      {
+        href: `/${req.params.id}/comments`,
+        rel: "",
+        type: "GET",
+      },
     ];
-
     if (post) res.json({ post, links });
     else next();
   })
@@ -94,5 +98,18 @@ router
     if (post) res.json(post);
     else next();
   });
+
+  router
+  .route('/:id/comments')
+  .get((req,res,next)=>{
+    const postComments = comments.filter((c) => c.postId === Number(req.params.id))
+    if(req.query.userId){
+      const postCommentsByUserId =comments.filter((c) => c.postId === Number(req.params.id) && c.userId === Number(req.query.userId))
+      res.json({postCommentsByUserId})
+    }
+    if(postComments) res.json({postComments})
+    else next({error:"no comments..."});
+  })
+
 
 module.exports = router;
